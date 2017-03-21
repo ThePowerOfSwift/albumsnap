@@ -1,0 +1,79 @@
+PODS:
+  - Alamofire (4.4.0)
+  - Apollo (0.5.6)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Eureka (2.0.1)
+  - Files (1.5.5)
+  - FSCalendar (2.7.3)
+  - Hero (0.3.6)
+  - ImageViewer (4.0)
+  - Kingfisher (3.5.2)
+  - Onboard (2.3.1)
+  - RxCocoa (3.3.1):
+    - RxSwift (~> 3.3)
+  - RxGesture (1.0.0):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - RxKeyboard (0.4.1):
+    - RxCocoa (>= 3.0)
+    - RxSwift (>= 3.0)
+  - RxSwift (3.3.1)
+  - SwifterSwift (1.6.2)
+  - SwiftyStoreKit (0.8.4)
+  - SwiftyUserDefaults (3.0.0)
+  - Timepiece (1.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Apollo
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - Eureka (~> 2.0.0-beta.1)
+  - Files
+  - FSCalendar
+  - Hero
+  - ImageViewer
+  - Kingfisher
+  - Onboard
+  - RxCocoa
+  - RxGesture
+  - RxKeyboard
+  - RxSwift
+  - SwifterSwift
+  - SwiftyStoreKit
+  - SwiftyUserDefaults
+  - Timepiece
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Apollo: 124ddbbca48acca75fd5f9ec5045454cb410bb31
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
+  Files: de79bdccba387592a120cd2d70c7e81baa84081a
+  FSCalendar: 574388d70778c22719eed9341653e1743b345573
+  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
+  ImageViewer: 364abc0309c33dda86d08ca25b0243e5c67d8cd3
+  Kingfisher: 9950e382c500b6834ce004c7c4131c444e90c3a1
+  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
+  RxGesture: df17ca8be513640294c544b3165875e91de665ec
+  RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
+  RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
+  SwifterSwift: 48a48a193b47e0d577359c75570e5291dd2f460a
+  SwiftyStoreKit: b235756bd6e541cafbed6e75d28b29b8a1c1caef
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  Timepiece: 4190a7bc5ae1c05c87531fd75b14e17d2a017902
+
+PODFILE CHECKSUM: 8c259d19489d1fbd680e57076cbcb6660d6fb54a
+
+COCOAPODS: 1.1.1

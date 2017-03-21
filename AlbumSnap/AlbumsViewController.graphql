@@ -1,0 +1,67 @@
+query AllPhotos {
+    photos: allPhotos {
+        id
+    }
+}
+
+mutation CreatePhoto($albumId: ID!) {
+    photo: createPhoto(albumId: $albumId) {
+        id
+    }
+}
+
+mutation SetPhotoFile($fileId: ID!, $photoId: ID!) {
+    payload: setPhotoFile(fileFileId: $fileId, photoPhotoId: $photoId) {
+        photo: photoPhoto {
+            id
+        }
+        file: fileFile {
+            id
+        }
+    }
+}
+
+query AllAlbums {
+    albums: allAlbums {
+        id
+        name
+        photos {
+            id
+            caption
+        }
+    }
+}
+
+mutation CreateAlbum($name: String!) {
+    album: createAlbum(name: $name) {
+        id
+    }
+}
+
+mutation DeleteAlbum($id: ID!) {
+    album: deleteAlbum(id: $id) {
+        id
+    }
+}
+
+mutation AddPhotoToAlbum($photoId: ID!, $albumId: ID!) {
+    payload: addToAlbumPhotos(photosPhotoId: $photoId, albumAlbumId: $albumId) {
+        album: albumAlbum {
+            id
+        }
+        photo: photosPhoto {
+            id
+        }
+    }
+}
+
+mutation RemovePhotoFromAlbum($photoId: ID!, $albumId: ID!) {
+    payload: removeFromAlbumPhotos(photosPhotoId: $photoId, albumAlbumId: $albumId) {
+        album: albumAlbum {
+            id
+        }
+        photo: photosPhoto {
+            id
+        }
+    }
+}

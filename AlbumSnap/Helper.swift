@@ -15,6 +15,7 @@ let apollo = ApolloClient(url: URL(string: graphlQLEndpointURL)!)
 
 let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 let docDir = URL(fileURLWithPath: documentsDirectoryPath)
+let tempDir = URL(fileURLWithPath: NSTemporaryDirectory())
 
 extension UIImage {
     var data: Data? {

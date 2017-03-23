@@ -17,6 +17,7 @@ mutation SetPhotoFile($fileId: ID!, $photoId: ID!) {
         }
         file: fileFile {
             id
+            url
         }
     }
 }

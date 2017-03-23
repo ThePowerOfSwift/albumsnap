@@ -21,7 +21,7 @@ class RxNetworkService {
     }
 
     static func upload(data: Data, with filename: String) -> Observable<FileData> {
-        let url = docDir.appendingPathComponent(filename)
+        let url = tempDir.appendingPathComponent(filename)
         do {
             try data.write(to: url)
         } catch let error {

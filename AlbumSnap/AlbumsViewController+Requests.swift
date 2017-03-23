@@ -44,14 +44,15 @@ extension AlbumsViewController {
         }
     }
 
-    func set(photoId: String, fileId: String) -> Observable<(String, String)> {
+    func set(photoId: String, fileId: String) -> Observable<URL> {
         let mutation = SetPhotoFileMutation(fileId: fileId, photoId: photoId)
         return Observable.create { o in
             let operation = apollo.perform(mutation: mutation)
             { result, error in
                 guard error == nil else { o.on(.error(error!)); return }
-                let payload = result!.data!.payload!
-                o.on(.next(payload.photo!.id, payload.file!.id))
+                guard result?.errors == nil else { o.on(.error(result!.errors!.first!)); return }
+                let url = URL(string: result!.data!.payload!.file!.url)!
+                o.on(.next(url))
                 o.on(.completed)
             }
             return Disposables.create {

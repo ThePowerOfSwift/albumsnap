@@ -6,10 +6,12 @@
 //  Copyright © 2017 AlbumSnap. All rights reserved.
 //
 
-import UIKit
 import Apollo
+import Files
+import Kingfisher
 import RxSwift
 import RxCocoa
+import UIKit
 
 class AlbumsViewController: UIViewController {
 
@@ -56,12 +58,10 @@ class AlbumsViewController: UIViewController {
 
     @IBAction func tapGesture(_ sender: Any) {
         //createAlbum()
-        //uploadPhoto()
+        uploadPhoto()
 
         //add(photos: photos, to: albums.first!)
-        //add(photo: photos.first!, album: albums.first!)
-        //add(photo: photos.last!, album: albums.first!)
-        remove(photos: photos, from: albums.first!)
+        //remove(photos: photos, from: albums.first!)
     }
 
     func add(photos: [Photo], to album: Album) {
@@ -94,21 +94,34 @@ class AlbumsViewController: UIViewController {
             .addDisposableTo(disposeBag)
     }
 
-    func uploadPhoto() {
-        let image = UIImage(named: "backgroundImage")!
-        let uploadObservable = RxNetworkService.upload(image: image, with: "YO.jpg")
+    func uploadPhoto(image: UIImage = UIImage(named: "backgroundImage")!) {
+        let filename = UUID().uuidString
+        let uploadObservable = RxNetworkService.upload(image: image, with: "\(filename).jpg")
         let createPhotoObservable = createPhoto(in: self.albums.first!)
         Observable
             .zip(uploadObservable, createPhotoObservable) { return ($0, $1) }
-            .flatMap { fileData, photoId -> Observable<(String, String)> in
+            .flatMap { fileData, photoId -> Observable<URL> in
                 return self.set(photoId: photoId, fileId: fileData.id)
             }
-            .subscribe(onNext: { photoId, fileId in
-                print("photoId: \(photoId) set to fileID \(fileId)")
+            .subscribe(onNext: { url in
+                print("file url: \(url)")
+                self.moveToCache(filename, url)
             }, onError: { error in
                 print(error.localizedDescription)
             })
             .addDisposableTo(disposeBag)
+    }
+
+    func moveToCache(_ filename: String, _ url: URL) {
+        let localURL = tempDir.appendingPathComponent("\(filename).jpg")
+        do {
+            try File(path: localURL.path).delete()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        ImagePrefetcher(urls: [url]) { _, _, completedResources in
+            print("These resources are prefetched: \(completedResources)")
+        }.start()
     }
 
     func createAlbum() {

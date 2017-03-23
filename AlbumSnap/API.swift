@@ -82,6 +82,7 @@ public final class SetPhotoFileMutation: GraphQLMutation {
     "    file: fileFile {" +
     "      __typename" +
     "      id" +
+    "      url" +
     "    }" +
     "  }" +
     "}"
@@ -129,10 +130,12 @@ public final class SetPhotoFileMutation: GraphQLMutation {
       public struct File: GraphQLMappable {
         public let __typename: String
         public let id: GraphQLID
+        public let url: String
 
         public init(reader: GraphQLResultReader) throws {
           __typename = try reader.value(for: Field(responseName: "__typename"))
           id = try reader.value(for: Field(responseName: "id"))
+          url = try reader.value(for: Field(responseName: "url"))
         }
       }
     }

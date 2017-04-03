@@ -2,6 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to import photos.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to tag your photos.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Used to tag your photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to tag your photos.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to capture your photos.</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

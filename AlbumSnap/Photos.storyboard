@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photos View Controller-->
+        <scene sceneID="trv-C8-LtS">
+            <objects>
+                <viewController storyboardIdentifier="PhotosViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xpo-T0-j8j" customClass="PhotosViewController" customModule="AlbumSnap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JA9-Yp-p3A"/>
+                        <viewControllerLayoutGuide type="bottom" id="W8e-vD-fWy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a0i-ti-gnu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6yg-ik-gzr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="n0g-mE-6iI">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="1" minY="1" maxX="1" maxY="1"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoThumbnailCell" id="t5O-DI-8yP" customClass="PhotoThumbnailCell" customModule="AlbumSnap" customModuleProvider="target">
+                                        <rect key="frame" x="1" y="1" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kpO-eI-bGH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="kpO-eI-bGH" secondAttribute="trailing" id="59O-qT-o8Z"/>
+                                            <constraint firstItem="kpO-eI-bGH" firstAttribute="top" secondItem="t5O-DI-8yP" secondAttribute="top" id="QyN-as-7pF"/>
+                                            <constraint firstAttribute="bottom" secondItem="kpO-eI-bGH" secondAttribute="bottom" id="ez3-So-E8N"/>
+                                            <constraint firstItem="kpO-eI-bGH" firstAttribute="leading" secondItem="t5O-DI-8yP" secondAttribute="leading" id="lqb-8H-uo9"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="thumbnailImageView" destination="kpO-eI-bGH" id="VLE-G5-Q8h"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6yg-ik-gzr" secondAttribute="trailing" id="4jW-06-b0v"/>
+                            <constraint firstItem="6yg-ik-gzr" firstAttribute="top" secondItem="JA9-Yp-p3A" secondAttribute="bottom" id="6xx-Oa-cDe"/>
+                            <constraint firstItem="W8e-vD-fWy" firstAttribute="top" secondItem="6yg-ik-gzr" secondAttribute="bottom" id="COq-si-c2P"/>
+                            <constraint firstItem="6yg-ik-gzr" firstAttribute="leading" secondItem="a0i-ti-gnu" secondAttribute="leading" id="gNq-d4-Joi"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="6yg-ik-gzr" id="njU-Cw-Mrf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j3u-j0-Teg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="181.59999999999999" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>

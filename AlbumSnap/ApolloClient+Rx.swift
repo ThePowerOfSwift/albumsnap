@@ -1,26 +1,30 @@
 //
-//  AlbumsViewController+Requests.swift
+//  RxApollo.swift
 //  AlbumSnap
 //
-//  Created by Aaron Monick on 3/20/17.
+//  Created by Aaron Monick on 4/2/17.
 //  Copyright © 2017 AlbumSnap. All rights reserved.
 //
 
 import RxSwift
+import Apollo
 
-extension AlbumsViewController {
+let graphlQLEndpointURL = "https://api.graph.cool/simple/v1/cizd4qias0hjj0140lmteq6n8"
+let fileEndpointURL = "https://api.graph.cool/file/v1/cizd4qias0hjj0140lmteq6n8"
+let apollo = ApolloClient(url: URL(string: graphlQLEndpointURL)!)
 
-    typealias Photo = AllPhotosQuery.Data.Photo
-    typealias Album = AllAlbumsQuery.Data.Album
+extension ApolloClient {
 
-    func fetchPhotos() -> Observable<[Photo]> {
+    // MARK: - Photos
+
+    func fetchPhotos() -> Observable<[PhotoDetails]> {
         let query = AllPhotosQuery()
         return Observable.create { o in
             let operation = apollo.fetch(query: query,
                                          cachePolicy: .returnCacheDataElseFetch)
             { result, error in
                 guard error == nil else { o.on(.error(error!)); return }
-                o.on(.next(result!.data!.photos))
+                o.on(.next(result!.data!.photos.map { $0.fragments.photoDetails }))
                 o.on(.completed)
             }
             return Disposables.create {
@@ -29,8 +33,8 @@ extension AlbumsViewController {
         }
     }
 
-    func createPhoto(in album: Album) -> Observable<String> {
-        let mutation = CreatePhotoMutation(albumId: album.id)
+    func createPhoto(with albumID: String) -> Observable<String> {
+        let mutation = CreatePhotoMutation(albumId: albumID)
         return Observable.create { o in
             let operation = apollo.perform(mutation: mutation)
             { result, error in
@@ -44,7 +48,7 @@ extension AlbumsViewController {
         }
     }
 
-    func set(photoId: String, fileId: String) -> Observable<URL> {
+    func setPhotoFile(photoId: String, fileId: String) -> Observable<URL> {
         let mutation = SetPhotoFileMutation(fileId: fileId, photoId: photoId)
         return Observable.create { o in
             let operation = apollo.perform(mutation: mutation)
@@ -61,14 +65,48 @@ extension AlbumsViewController {
         }
     }
 
-    func fetchAlbums() -> Observable<[Album]> {
+    func add(photoID: String, to albumID: String) -> Observable<(String, String)> {
+        let mutation = AddPhotoToAlbumMutation(photoId: photoID, albumId: albumID)
+        return Observable.create { o in
+            let operation = apollo.perform(mutation: mutation)
+            { result, error in
+                guard error == nil else { o.on(.error(error!)); return }
+                let payload = result!.data!.payload!
+                o.on(.next(payload.photo!.id, payload.album!.id))
+                o.on(.completed)
+            }
+            return Disposables.create {
+                operation.cancel()
+            }
+        }
+    }
+
+    func remove(photoID: String, from albumID: String) -> Observable<(String, String)> {
+        let mutation = RemovePhotoFromAlbumMutation(photoId: photoID, albumId: albumID)
+        return Observable.create { o in
+            let operation = apollo.perform(mutation: mutation)
+            { result, error in
+                guard error == nil else { o.on(.error(error!)); return }
+                let payload = result!.data!.payload!
+                o.on(.next(payload.photo!.id, payload.album!.id))
+                o.on(.completed)
+            }
+            return Disposables.create {
+                operation.cancel()
+            }
+        }
+    }
+
+    // MARK: - Albums
+
+    func fetchAlbums() -> Observable<[AlbumDetails]> {
         let query = AllAlbumsQuery()
         return Observable.create { o in
             let operation = apollo.fetch(query: query,
                                          cachePolicy: .fetchIgnoringCacheData)
             { result, error in
                 guard error == nil else { o.on(.error(error!)); return }
-                o.on(.next(result!.data!.albums))
+                o.on(.next(result!.data!.albums.map { $0.fragments.albumDetails }))
                 o.on(.completed)
             }
             return Disposables.create {
@@ -92,8 +130,8 @@ extension AlbumsViewController {
         }
     }
 
-    func delete(album: Album) -> Observable<String> {
-        let mutation = DeleteAlbumMutation(id: album.id)
+    func deleteAlbum(with albumID: String) -> Observable<String> {
+        let mutation = DeleteAlbumMutation(id: albumID)
         return Observable.create { o in
             let operation = apollo.perform(mutation: mutation) { result, error in
                 guard error == nil else { o.on(.error(error!)); return }
@@ -106,37 +144,4 @@ extension AlbumsViewController {
         }
     }
 
-    func add(photo: Photo, to album: Album) -> Observable<(String, String)> {
-        let mutation = AddPhotoToAlbumMutation(photoId: photo.id, albumId: album.id)
-        return Observable.create { o in
-            let operation = apollo.perform(mutation: mutation)
-            { result, error in
-                guard error == nil else { o.on(.error(error!)); return }
-                let payload = result!.data!.payload!
-                o.on(.next(payload.photo!.id, payload.album!.id))
-                o.on(.completed)
-            }
-            return Disposables.create {
-                operation.cancel()
-            }
-        }
-    }
-
-    func remove(photo: Photo, from album: Album) -> Observable<(String, String)> {
-        let mutation = RemovePhotoFromAlbumMutation(photoId: photo.id, albumId: album.id)
-        return Observable.create { o in
-            let operation = apollo.perform(mutation: mutation)
-            { result, error in
-                guard error == nil else { o.on(.error(error!)); return }
-                let payload = result!.data!.payload!
-                o.on(.next(payload.photo!.id, payload.album!.id))
-                o.on(.completed)
-            }
-            return Disposables.create {
-                operation.cancel()
-            }
-        }
-    }
 }
-
-

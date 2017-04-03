@@ -1,0 +1,20 @@
+query AllPhotos {
+    photos: allPhotos {
+        ...PhotoDetails
+    }
+}
+
+fragment PhotoDetails on Photo {
+    id
+    name
+    caption
+    createdAt
+    file {
+        id
+        url
+    }
+    album {
+        id
+        name
+    }
+}

@@ -2,36 +2,6 @@
 
 import Apollo
 
-public final class AllPhotosQuery: GraphQLQuery {
-  public static let operationDefinition =
-    "query AllPhotos {" +
-    "  photos: allPhotos {" +
-    "    __typename" +
-    "    id" +
-    "  }" +
-    "}"
-  public init() {
-  }
-
-  public struct Data: GraphQLMappable {
-    public let photos: [Photo]
-
-    public init(reader: GraphQLResultReader) throws {
-      photos = try reader.list(for: Field(responseName: "photos", fieldName: "allPhotos"))
-    }
-
-    public struct Photo: GraphQLMappable {
-      public let __typename: String
-      public let id: GraphQLID
-
-      public init(reader: GraphQLResultReader) throws {
-        __typename = try reader.value(for: Field(responseName: "__typename"))
-        id = try reader.value(for: Field(responseName: "id"))
-      }
-    }
-  }
-}
-
 public final class CreatePhotoMutation: GraphQLMutation {
   public static let operationDefinition =
     "mutation CreatePhoto($albumId: ID!) {" +
@@ -147,15 +117,10 @@ public final class AllAlbumsQuery: GraphQLQuery {
     "query AllAlbums {" +
     "  albums: allAlbums {" +
     "    __typename" +
-    "    id" +
-    "    name" +
-    "    photos {" +
-    "      __typename" +
-    "      id" +
-    "      caption" +
-    "    }" +
+    "    ...AlbumDetails" +
     "  }" +
     "}"
+  public static let queryDocument = operationDefinition.appending(AlbumDetails.fragmentDefinition).appending(PhotoDetails.fragmentDefinition)
   public init() {
   }
 
@@ -168,27 +133,18 @@ public final class AllAlbumsQuery: GraphQLQuery {
 
     public struct Album: GraphQLMappable {
       public let __typename: String
-      public let id: GraphQLID
-      public let name: String?
-      public let photos: [Photo]?
+
+      public let fragments: Fragments
 
       public init(reader: GraphQLResultReader) throws {
         __typename = try reader.value(for: Field(responseName: "__typename"))
-        id = try reader.value(for: Field(responseName: "id"))
-        name = try reader.optionalValue(for: Field(responseName: "name"))
-        photos = try reader.optionalList(for: Field(responseName: "photos"))
+
+        let albumDetails = try AlbumDetails(reader: reader)
+        fragments = Fragments(albumDetails: albumDetails)
       }
 
-      public struct Photo: GraphQLMappable {
-        public let __typename: String
-        public let id: GraphQLID
-        public let caption: String?
-
-        public init(reader: GraphQLResultReader) throws {
-          __typename = try reader.value(for: Field(responseName: "__typename"))
-          id = try reader.value(for: Field(responseName: "id"))
-          caption = try reader.optionalValue(for: Field(responseName: "caption"))
-        }
+      public struct Fragments {
+        public let albumDetails: AlbumDetails
       }
     }
   }
@@ -404,6 +360,159 @@ public final class RemovePhotoFromAlbumMutation: GraphQLMutation {
           id = try reader.value(for: Field(responseName: "id"))
         }
       }
+    }
+  }
+}
+
+public final class AllPhotosQuery: GraphQLQuery {
+  public static let operationDefinition =
+    "query AllPhotos {" +
+    "  photos: allPhotos {" +
+    "    __typename" +
+    "    ...PhotoDetails" +
+    "  }" +
+    "}"
+  public static let queryDocument = operationDefinition.appending(PhotoDetails.fragmentDefinition)
+  public init() {
+  }
+
+  public struct Data: GraphQLMappable {
+    public let photos: [Photo]
+
+    public init(reader: GraphQLResultReader) throws {
+      photos = try reader.list(for: Field(responseName: "photos", fieldName: "allPhotos"))
+    }
+
+    public struct Photo: GraphQLMappable {
+      public let __typename: String
+
+      public let fragments: Fragments
+
+      public init(reader: GraphQLResultReader) throws {
+        __typename = try reader.value(for: Field(responseName: "__typename"))
+
+        let photoDetails = try PhotoDetails(reader: reader)
+        fragments = Fragments(photoDetails: photoDetails)
+      }
+
+      public struct Fragments {
+        public let photoDetails: PhotoDetails
+      }
+    }
+  }
+}
+
+public struct AlbumDetails: GraphQLNamedFragment {
+  public static let fragmentDefinition =
+    "fragment AlbumDetails on Album {" +
+    "  __typename" +
+    "  id" +
+    "  name" +
+    "  descript" +
+    "  createdAt" +
+    "  photos {" +
+    "    __typename" +
+    "    ...PhotoDetails" +
+    "  }" +
+    "}"
+
+  public static let possibleTypes = ["Album"]
+
+  public let __typename: String
+  public let id: GraphQLID
+  public let name: String?
+  public let descript: String?
+  public let createdAt: String?
+  public let photos: [Photo]?
+
+  public init(reader: GraphQLResultReader) throws {
+    __typename = try reader.value(for: Field(responseName: "__typename"))
+    id = try reader.value(for: Field(responseName: "id"))
+    name = try reader.optionalValue(for: Field(responseName: "name"))
+    descript = try reader.optionalValue(for: Field(responseName: "descript"))
+    createdAt = try reader.optionalValue(for: Field(responseName: "createdAt"))
+    photos = try reader.optionalList(for: Field(responseName: "photos"))
+  }
+
+  public struct Photo: GraphQLMappable {
+    public let __typename: String
+
+    public let fragments: Fragments
+
+    public init(reader: GraphQLResultReader) throws {
+      __typename = try reader.value(for: Field(responseName: "__typename"))
+
+      let photoDetails = try PhotoDetails(reader: reader)
+      fragments = Fragments(photoDetails: photoDetails)
+    }
+
+    public struct Fragments {
+      public let photoDetails: PhotoDetails
+    }
+  }
+}
+
+public struct PhotoDetails: GraphQLNamedFragment {
+  public static let fragmentDefinition =
+    "fragment PhotoDetails on Photo {" +
+    "  __typename" +
+    "  id" +
+    "  name" +
+    "  caption" +
+    "  createdAt" +
+    "  file {" +
+    "    __typename" +
+    "    id" +
+    "    url" +
+    "  }" +
+    "  album {" +
+    "    __typename" +
+    "    id" +
+    "    name" +
+    "  }" +
+    "}"
+
+  public static let possibleTypes = ["Photo"]
+
+  public let __typename: String
+  public let id: GraphQLID
+  public let name: String?
+  public let caption: String?
+  public let createdAt: String
+  public let file: File?
+  public let album: Album?
+
+  public init(reader: GraphQLResultReader) throws {
+    __typename = try reader.value(for: Field(responseName: "__typename"))
+    id = try reader.value(for: Field(responseName: "id"))
+    name = try reader.optionalValue(for: Field(responseName: "name"))
+    caption = try reader.optionalValue(for: Field(responseName: "caption"))
+    createdAt = try reader.value(for: Field(responseName: "createdAt"))
+    file = try reader.optionalValue(for: Field(responseName: "file"))
+    album = try reader.optionalValue(for: Field(responseName: "album"))
+  }
+
+  public struct File: GraphQLMappable {
+    public let __typename: String
+    public let id: GraphQLID
+    public let url: String
+
+    public init(reader: GraphQLResultReader) throws {
+      __typename = try reader.value(for: Field(responseName: "__typename"))
+      id = try reader.value(for: Field(responseName: "id"))
+      url = try reader.value(for: Field(responseName: "url"))
+    }
+  }
+
+  public struct Album: GraphQLMappable {
+    public let __typename: String
+    public let id: GraphQLID
+    public let name: String?
+
+    public init(reader: GraphQLResultReader) throws {
+      __typename = try reader.value(for: Field(responseName: "__typename"))
+      id = try reader.value(for: Field(responseName: "id"))
+      name = try reader.optionalValue(for: Field(responseName: "name"))
     }
   }
 }

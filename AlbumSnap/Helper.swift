@@ -7,11 +7,6 @@
 //
 
 import UIKit
-import Apollo
-
-let graphlQLEndpointURL = "https://api.graph.cool/simple/v1/cizd4qias0hjj0140lmteq6n8"
-let fileEndpointURL = "https://api.graph.cool/file/v1/cizd4qias0hjj0140lmteq6n8"
-let apollo = ApolloClient(url: URL(string: graphlQLEndpointURL)!)
 
 let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 let docDir = URL(fileURLWithPath: documentsDirectoryPath)
@@ -57,5 +52,8 @@ extension RawRepresentable where RawValue == Int {
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return topViewController?.preferredStatusBarStyle ?? .default
+    }
+    open override var prefersStatusBarHidden: Bool {
+        return topViewController?.prefersStatusBarHidden ?? false
     }
 }

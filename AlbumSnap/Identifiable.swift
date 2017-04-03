@@ -21,11 +21,11 @@ extension Identifiable {
 extension UIStoryboard {
 
     enum Storyboard: String {
-        case albums     = "Albums"
-        case camera     = "Camera"
-        case home       = "Home"
-        case main       = "Main"
-        case photos     = "Photos"
+        case albums         = "Albums"
+        case camera         = "Camera"
+        case main           = "Main"
+        case photos         = "Photos"
+        case photoLibrary   = "PhotoLibrary"
     }
 
     convenience init(_ storyboard: Storyboard, bundle: Bundle? = nil) {

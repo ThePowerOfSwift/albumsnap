@@ -1,6 +1,10 @@
-query AllPhotos {
-    photos: allPhotos {
-        id
+fragment AlbumDetails on Album {
+    id
+    name
+    descript
+    createdAt
+    photos {
+        ...PhotoDetails
     }
 }
 
@@ -24,12 +28,7 @@ mutation SetPhotoFile($fileId: ID!, $photoId: ID!) {
 
 query AllAlbums {
     albums: allAlbums {
-        id
-        name
-        photos {
-            id
-            caption
-        }
+        ...AlbumDetails
     }
 }
 

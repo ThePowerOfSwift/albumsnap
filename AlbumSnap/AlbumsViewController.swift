@@ -6,7 +6,6 @@
 //  Copyright © 2017 AlbumSnap. All rights reserved.
 //
 
-import Apollo
 import Files
 import Kingfisher
 import RxSwift
@@ -26,22 +25,11 @@ class AlbumsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getAlbums()
-        //getPhotos()
     }
 
-//    func getPhotos() {
-//        fetchPhotos()
-//            .subscribe(onNext: { photos in
-//                for photo in photos {
-//                    print("photo id: \(photo.id)")
-//                }
-//                self.photos = photos
-//            })
-//            .addDisposableTo(disposeBag)
-//    }
-
     func getAlbums() {
-        apollo
+        engine
+            .apollo
             .fetchAlbums()
             .subscribe(onNext: { albums in
                 for album in albums {
@@ -96,12 +84,12 @@ class AlbumsViewController: UIViewController {
 
     func uploadPhoto(image: UIImage = UIImage(named: "backgroundImage")!) {
         let filename = UUID().uuidString
-        let uploadObservable = RxNetworkService.upload(image: image, with: "\(filename).jpg")
-        let createPhotoObservable = apollo.createPhoto(with: self.albums.first!.id)
+        let uploadObservable = Engine.upload(image: image, with: "\(filename).jpg")
+        let createPhotoObservable = engine.apollo.createPhoto(with: self.albums.first!.id)
         Observable
             .zip(uploadObservable, createPhotoObservable) { return ($0, $1) }
             .flatMap { fileData, photoId -> Observable<URL> in
-                return apollo.setPhotoFile(photoId: photoId, fileId: fileData.id)
+                return engine.apollo.setPhotoFile(photoId: photoId, fileId: fileData.id)
             }
             .subscribe(onNext: { url in
                 print("file url: \(url)")
@@ -127,7 +115,9 @@ class AlbumsViewController: UIViewController {
     func createAlbum() {
         UIAlertController.textAlert("New Album", "Enter Album Name") { albumName in
             guard let albumName = albumName else { return }
-            apollo.createAlbum(with: albumName)
+            engine
+                .apollo
+                .createAlbum(with: albumName)
                 .subscribe(onNext: { albumId in
                     print("New album created with id: \(albumId)")
                     self.getAlbums()
@@ -137,7 +127,9 @@ class AlbumsViewController: UIViewController {
     }
 
     func deleteAlbum(album: AlbumDetails) {
-        apollo.deleteAlbum(with: album.id)
+        engine
+            .apollo
+            .deleteAlbum(with: album.id)
             .subscribe(onNext: { albumId in
                 print("albumId: \(albumId) has been deleted")
             }, onError: { error in

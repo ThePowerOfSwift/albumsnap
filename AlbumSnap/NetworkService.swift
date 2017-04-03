@@ -9,52 +9,9 @@
 import Alamofire
 import RxSwift
 
-enum NetworkServiceError: Error {
-    case parsingError
-    case invalidData
-}
+// not currently used
 
 class RxNetworkService {
-
-    static func upload(image: UIImage, with filename: String) -> Observable<FileData> {
-        return upload(data: image.data!, with: filename)
-    }
-
-    static func upload(data: Data, with filename: String) -> Observable<FileData> {
-        let url = tempDir.appendingPathComponent(filename)
-        do {
-            try data.write(to: url)
-        } catch let error {
-            return Observable<FileData>.create { o in
-                o.onError(error)
-                return Disposables.create {}
-            }
-        }
-        return upload(with: url)
-    }
-
-    static func upload(with url: URL) -> Observable<FileData> {
-        return Observable<FileData>.create { o in
-            Alamofire.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(url, withName: "data")
-            }, to: fileEndpointURL) { result in
-                switch result {
-                case let .success(upload, _, _):
-                    upload.responseJSON { response in
-                        print(response)
-                        guard let dict = response.value as? Dictionary<String, Any>,
-                            let fileData = FileData(dict: dict)
-                        else { o.on(.error(NetworkServiceError.parsingError)); return }
-                        o.on(.next(fileData))
-                        o.on(.completed)
-                    }
-                case let .failure(encodingError):
-                    o.on(.error(encodingError))
-                }
-            }
-            return Disposables.create {}
-        }
-    }
 
     static func downloadImage(with url: String) -> Observable<UIImage> {
         return download(with: url).map { data -> UIImage in
@@ -66,7 +23,7 @@ class RxNetworkService {
         return Observable.create { o in
             let request = Alamofire.download(url).responseJSON { response in
                 guard response.error == nil else { o.on(.error(response.error!)); return }
-                guard let data = response.result.value as? Data else { o.on(.error(NetworkServiceError.invalidData)); return }
+                guard let data = response.result.value as? Data else { o.on(.error(EngineError.invalidData)); return }
                 o.on(.next(data))
                 o.on(.completed)
             }

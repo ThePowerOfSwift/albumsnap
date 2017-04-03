@@ -364,23 +364,145 @@ public final class RemovePhotoFromAlbumMutation: GraphQLMutation {
   }
 }
 
+public final class CreateUserMutation: GraphQLMutation {
+  public static let operationDefinition =
+    "mutation CreateUser($name: String!, $email: String!, $password: String!) {" +
+    "  createUser(name: $name, authProvider: {email: {email: $email, password: $password}}) {" +
+    "    __typename" +
+    "    ...UserDetails" +
+    "  }" +
+    "}"
+  public static let queryDocument = operationDefinition.appending(UserDetails.fragmentDefinition)
+
+  public let name: String
+  public let email: String
+  public let password: String
+
+  public init(name: String, email: String, password: String) {
+    self.name = name
+    self.email = email
+    self.password = password
+  }
+
+  public var variables: GraphQLMap? {
+    return ["name": name, "email": email, "password": password]
+  }
+
+  public struct Data: GraphQLMappable {
+    public let createUser: CreateUser?
+
+    public init(reader: GraphQLResultReader) throws {
+      createUser = try reader.optionalValue(for: Field(responseName: "createUser", arguments: ["name": reader.variables["name"], "authProvider": ["email": ["email": reader.variables["email"], "password": reader.variables["password"]]]]))
+    }
+
+    public struct CreateUser: GraphQLMappable {
+      public let __typename: String
+
+      public let fragments: Fragments
+
+      public init(reader: GraphQLResultReader) throws {
+        __typename = try reader.value(for: Field(responseName: "__typename"))
+
+        let userDetails = try UserDetails(reader: reader)
+        fragments = Fragments(userDetails: userDetails)
+      }
+
+      public struct Fragments {
+        public let userDetails: UserDetails
+      }
+    }
+  }
+}
+
+public final class SignInUserMutation: GraphQLMutation {
+  public static let operationDefinition =
+    "mutation SignInUser($email: String!, $password: String!) {" +
+    "  signinUser(email: {email: $email, password: $password}) {" +
+    "    __typename" +
+    "    token" +
+    "    user {" +
+    "      __typename" +
+    "      ...UserDetails" +
+    "    }" +
+    "  }" +
+    "}"
+  public static let queryDocument = operationDefinition.appending(UserDetails.fragmentDefinition)
+
+  public let email: String
+  public let password: String
+
+  public init(email: String, password: String) {
+    self.email = email
+    self.password = password
+  }
+
+  public var variables: GraphQLMap? {
+    return ["email": email, "password": password]
+  }
+
+  public struct Data: GraphQLMappable {
+    public let signinUser: SigninUser
+
+    public init(reader: GraphQLResultReader) throws {
+      signinUser = try reader.value(for: Field(responseName: "signinUser", arguments: ["email": ["email": reader.variables["email"], "password": reader.variables["password"]]]))
+    }
+
+    public struct SigninUser: GraphQLMappable {
+      public let __typename: String
+      public let token: String?
+      public let user: User?
+
+      public init(reader: GraphQLResultReader) throws {
+        __typename = try reader.value(for: Field(responseName: "__typename"))
+        token = try reader.optionalValue(for: Field(responseName: "token"))
+        user = try reader.optionalValue(for: Field(responseName: "user"))
+      }
+
+      public struct User: GraphQLMappable {
+        public let __typename: String
+
+        public let fragments: Fragments
+
+        public init(reader: GraphQLResultReader) throws {
+          __typename = try reader.value(for: Field(responseName: "__typename"))
+
+          let userDetails = try UserDetails(reader: reader)
+          fragments = Fragments(userDetails: userDetails)
+        }
+
+        public struct Fragments {
+          public let userDetails: UserDetails
+        }
+      }
+    }
+  }
+}
+
 public final class AllPhotosQuery: GraphQLQuery {
   public static let operationDefinition =
-    "query AllPhotos {" +
-    "  photos: allPhotos {" +
+    "query AllPhotos($last: Int) {" +
+    "  photos: allPhotos(last: $last) {" +
     "    __typename" +
     "    ...PhotoDetails" +
     "  }" +
     "}"
   public static let queryDocument = operationDefinition.appending(PhotoDetails.fragmentDefinition)
-  public init() {
+
+  public let last: Int?
+
+  public init(last: Int? = nil) {
+    self.last = last
+  }
+
+  public var variables: GraphQLMap? {
+    return ["last": last]
   }
 
   public struct Data: GraphQLMappable {
     public let photos: [Photo]
 
     public init(reader: GraphQLResultReader) throws {
-      photos = try reader.list(for: Field(responseName: "photos", fieldName: "allPhotos"))
+      photos = try reader.list(for: Field(responseName: "photos", fieldName: "allPhotos", arguments: ["last": reader.variables["last"]]))
     }
 
     public struct Photo: GraphQLMappable {
@@ -448,6 +570,49 @@ public struct AlbumDetails: GraphQLNamedFragment {
 
     public struct Fragments {
       public let photoDetails: PhotoDetails
+    }
+  }
+}
+
+public struct UserDetails: GraphQLNamedFragment {
+  public static let fragmentDefinition =
+    "fragment UserDetails on User {" +
+    "  __typename" +
+    "  id" +
+    "  email" +
+    "  name" +
+    "  createdAt" +
+    "  albums {" +
+    "    __typename" +
+    "    id" +
+    "  }" +
+    "}"
+
+  public static let possibleTypes = ["User"]
+
+  public let __typename: String
+  public let id: GraphQLID
+  public let email: String?
+  public let name: String
+  public let createdAt: String?
+  public let albums: [Album]?
+
+  public init(reader: GraphQLResultReader) throws {
+    __typename = try reader.value(for: Field(responseName: "__typename"))
+    id = try reader.value(for: Field(responseName: "id"))
+    email = try reader.optionalValue(for: Field(responseName: "email"))
+    name = try reader.value(for: Field(responseName: "name"))
+    createdAt = try reader.optionalValue(for: Field(responseName: "createdAt"))
+    albums = try reader.optionalList(for: Field(responseName: "albums"))
+  }
+
+  public struct Album: GraphQLMappable {
+    public let __typename: String
+    public let id: GraphQLID
+
+    public init(reader: GraphQLResultReader) throws {
+      __typename = try reader.value(for: Field(responseName: "__typename"))
+      id = try reader.value(for: Field(responseName: "id"))
     }
   }
 }

@@ -11,6 +11,7 @@ import UIKit
 enum Image: String {
     case backgroundImage
     case background
+    case launchScreen = "launch-screen"
     
     var value: UIImage {
         return UIImage(named: rawValue)!

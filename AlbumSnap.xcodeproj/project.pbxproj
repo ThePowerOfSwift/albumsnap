@@ -26,7 +26,6 @@
 		002CDBB21E7DFB5B008761C3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CDBB11E7DFB5B008761C3 /* NetworkService.swift */; };
 		002CDBB61E7DFC02008761C3 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CDBB51E7DFC02008761C3 /* UIAlertController+Extension.swift */; };
 		002CDBB81E7DFD1E008761C3 /* FileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CDBB71E7DFD1E008761C3 /* FileData.swift */; };
-		002CDBC01E7F021B008761C3 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 002CDBBF1E7F021B008761C3 /* schema.json */; };
 		002CDBC31E802F3C008761C3 /* Albums.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 002CDBC21E802F3C008761C3 /* Albums.storyboard */; };
 		002CDBC71E8036A8008761C3 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CDBC61E8036A8008761C3 /* Identifiable.swift */; };
 		002CDBCA1E8037C4008761C3 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CDBC91E8037C4008761C3 /* SegueHandler.swift */; };
@@ -34,6 +33,11 @@
 		0058CE2B1E634986006655B9 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0058CE2A1E634986006655B9 /* AlbumsViewController.swift */; };
 		0058CE2D1E634A84006655B9 /* AlbumsViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 0058CE2C1E634A84006655B9 /* AlbumsViewController.graphql */; };
 		0093CB1C1E63A39E00915798 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093CB1B1E63A39E00915798 /* Helper.swift */; };
+		00D63E641E92940F00B28888 /* Engine+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D63E631E92940F00B28888 /* Engine+Photos.swift */; };
+		00D63E661E92944600B28888 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D63E651E92944600B28888 /* Engine.swift */; };
+		00D63E681E9296EF00B28888 /* HomeViewController.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 00D63E671E9296EF00B28888 /* HomeViewController.graphql */; };
+		00D63E6C1E92A56000B28888 /* Engine+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D63E6B1E92A56000B28888 /* Engine+Auth.swift */; };
+		00D63E6E1E92B01E00B28888 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D63E6D1E92B01E00B28888 /* schema.json */; };
 		00D9E6DE1E5A346500B6D917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9E6DD1E5A346500B6D917 /* AppDelegate.swift */; };
 		00D9E6E31E5A346500B6D917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D9E6E11E5A346500B6D917 /* Main.storyboard */; };
 		00D9E6E51E5A346500B6D917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00D9E6E41E5A346500B6D917 /* Assets.xcassets */; };
@@ -84,7 +88,6 @@
 		002CDBB11E7DFB5B008761C3 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		002CDBB51E7DFC02008761C3 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		002CDBB71E7DFD1E008761C3 /* FileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileData.swift; sourceTree = "<group>"; };
-		002CDBBF1E7F021B008761C3 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		002CDBC21E802F3C008761C3 /* Albums.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Albums.storyboard; sourceTree = "<group>"; };
 		002CDBC61E8036A8008761C3 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		002CDBC91E8037C4008761C3 /* SegueHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
@@ -92,6 +95,11 @@
 		0058CE2A1E634986006655B9 /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		0058CE2C1E634A84006655B9 /* AlbumsViewController.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AlbumsViewController.graphql; sourceTree = "<group>"; };
 		0093CB1B1E63A39E00915798 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		00D63E631E92940F00B28888 /* Engine+Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Engine+Photos.swift"; sourceTree = "<group>"; };
+		00D63E651E92944600B28888 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		00D63E671E9296EF00B28888 /* HomeViewController.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HomeViewController.graphql; sourceTree = "<group>"; };
+		00D63E6B1E92A56000B28888 /* Engine+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Engine+Auth.swift"; sourceTree = "<group>"; };
+		00D63E6D1E92B01E00B28888 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		00D9E6DA1E5A346500B6D917 /* AlbumSnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumSnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00D9E6DD1E5A346500B6D917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00D9E6E21E5A346500B6D917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -191,11 +199,12 @@
 		002CDBC81E803737008761C3 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				00D63E6D1E92B01E00B28888 /* schema.json */,
 				00EA37F61E91C94B009D65B2 /* ApolloClient+Rx.swift */,
-				0058CE281E634942006655B9 /* API.swift */,
+				00D63E651E92944600B28888 /* Engine.swift */,
 				002CDBB71E7DFD1E008761C3 /* FileData.swift */,
 				002CDBB11E7DFB5B008761C3 /* NetworkService.swift */,
-				002CDBBF1E7F021B008761C3 /* schema.json */,
+				0058CE281E634942006655B9 /* API.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -220,6 +229,8 @@
 				00D9E6E11E5A346500B6D917 /* Main.storyboard */,
 				000C37191E84902E006E9F14 /* HomeViewController.swift */,
 				000C371B1E84903E006E9F14 /* HomeTableViewController.swift */,
+				00D63E671E9296EF00B28888 /* HomeViewController.graphql */,
+				00D63E6B1E92A56000B28888 /* Engine+Auth.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -230,6 +241,7 @@
 				000C37261E8491A1006E9F14 /* Photos.storyboard */,
 				000C37221E849125006E9F14 /* PhotosViewController.swift */,
 				00EA37F41E917774009D65B2 /* PhotosViewController.graphql */,
+				00D63E631E92940F00B28888 /* Engine+Photos.swift */,
 			);
 			name = Photos;
 			sourceTree = "<group>";
@@ -436,9 +448,10 @@
 				0058CE2D1E634A84006655B9 /* AlbumsViewController.graphql in Resources */,
 				00EA37F51E917774009D65B2 /* PhotosViewController.graphql in Resources */,
 				000C37251E849195006E9F14 /* Camera.storyboard in Resources */,
-				002CDBC01E7F021B008761C3 /* schema.json in Resources */,
+				00D63E681E9296EF00B28888 /* HomeViewController.graphql in Resources */,
 				002CDBC31E802F3C008761C3 /* Albums.storyboard in Resources */,
 				00D9E6E81E5A346600B6D917 /* LaunchScreen.storyboard in Resources */,
+				00D63E6E1E92B01E00B28888 /* schema.json in Resources */,
 				000C37271E8491A1006E9F14 /* Photos.storyboard in Resources */,
 				00D9E6E51E5A346500B6D917 /* Assets.xcassets in Resources */,
 				000C37291E8491AA006E9F14 /* PhotoLibrary.storyboard in Resources */,
@@ -622,6 +635,7 @@
 				000C37181E848E40006E9F14 /* Image.swift in Sources */,
 				000C371A1E84902E006E9F14 /* HomeViewController.swift in Sources */,
 				002CDBB81E7DFD1E008761C3 /* FileData.swift in Sources */,
+				00D63E6C1E92A56000B28888 /* Engine+Auth.swift in Sources */,
 				000C371C1E84903E006E9F14 /* HomeTableViewController.swift in Sources */,
 				000C370C1E848D31006E9F14 /* VideoDataOutput.swift in Sources */,
 				00EA37F71E91C94B009D65B2 /* ApolloClient+Rx.swift in Sources */,
@@ -631,6 +645,7 @@
 				002CDBB21E7DFB5B008761C3 /* NetworkService.swift in Sources */,
 				002CDBC71E8036A8008761C3 /* Identifiable.swift in Sources */,
 				000C371E1E84904C006E9F14 /* CameraViewController.swift in Sources */,
+				00D63E641E92940F00B28888 /* Engine+Photos.swift in Sources */,
 				000C37231E849125006E9F14 /* PhotosViewController.swift in Sources */,
 				0058CE2B1E634986006655B9 /* AlbumsViewController.swift in Sources */,
 				002CDBCA1E8037C4008761C3 /* SegueHandler.swift in Sources */,
@@ -642,6 +657,7 @@
 				0058CE291E634942006655B9 /* API.swift in Sources */,
 				000C370E1E848D69006E9F14 /* PhotoOutput.swift in Sources */,
 				0093CB1C1E63A39E00915798 /* Helper.swift in Sources */,
+				00D63E661E92944600B28888 /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

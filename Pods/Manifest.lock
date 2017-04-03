@@ -1,16 +1,32 @@
 PODS:
   - Alamofire (4.4.0)
   - Apollo (0.5.6)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - Eureka (2.0.1)
+  - FBSDKCoreKit (4.20.2):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.18.0):
+    - FBSDKCoreKit
   - Files (1.5.5)
   - FSCalendar (2.7.3)
+  - Gallery (1.0.0)
   - Hero (0.3.6)
+  - ILLoginKit (0.0.5):
+    - FBSDKLoginKit (= 4.18.0)
+    - Validator (~> 2.1.1)
   - ImageViewer (4.0)
+  - KeychainSwift (7.0.0)
   - Kingfisher (3.5.2)
   - Onboard (2.3.1)
+  - PKHUD (4.2.0)
   - RxCocoa (3.3.1):
     - RxSwift (~> 3.3)
   - RxGesture (1.0.0):
@@ -24,6 +40,7 @@ PODS:
   - SwiftyStoreKit (0.8.4)
   - SwiftyUserDefaults (3.0.0)
   - Timepiece (1.1.0)
+  - Validator (2.1.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -32,10 +49,14 @@ DEPENDENCIES:
   - Eureka (~> 2.0.0-beta.1)
   - Files
   - FSCalendar
+  - Gallery
   - Hero
+  - ILLoginKit
   - ImageViewer
+  - KeychainSwift
   - Kingfisher
   - Onboard
+  - PKHUD (~> 4.0)
   - RxCocoa
   - RxGesture
   - RxKeyboard
@@ -57,14 +78,21 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Apollo: 124ddbbca48acca75fd5f9ec5045454cb410bb31
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
+  FBSDKCoreKit: 82eac696eb6157da5f4266c3a241f00e9bd72471
+  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   Files: de79bdccba387592a120cd2d70c7e81baa84081a
   FSCalendar: 574388d70778c22719eed9341653e1743b345573
+  Gallery: 001218dc39bb0cf62df18fa82af162a9d7abdc88
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
+  ILLoginKit: a1a99a88a2ff38637588a2d638e9577e900eb2fb
   ImageViewer: 364abc0309c33dda86d08ca25b0243e5c67d8cd3
+  KeychainSwift: b6947435dd78cc442c64a84ae648dd0e871cf448
   Kingfisher: 9950e382c500b6834ce004c7c4131c444e90c3a1
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
@@ -73,7 +101,8 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: b235756bd6e541cafbed6e75d28b29b8a1c1caef
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Timepiece: 4190a7bc5ae1c05c87531fd75b14e17d2a017902
+  Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 8c259d19489d1fbd680e57076cbcb6660d6fb54a
+PODFILE CHECKSUM: 7c78d8a4923cb040e9f6b36843b09917e01e13b5
 
 COCOAPODS: 1.1.1

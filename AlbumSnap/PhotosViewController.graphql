@@ -1,5 +1,5 @@
-query AllPhotos {
-    photos: allPhotos {
+query AllPhotos($last: Int) {
+    photos: allPhotos(last: $last) {
         ...PhotoDetails
     }
 }

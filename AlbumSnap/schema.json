@@ -84,6 +84,45 @@
       },
       "types": [
         {
+          "inputFields": [
+            {
+              "name": "email",
+              "description": "",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password",
+              "description": "",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "name": "AUTH_PROVIDER_EMAIL",
+          "description": null,
+          "interfaces": null,
+          "enumValues": null,
+          "fields": null,
+          "kind": "INPUT_OBJECT",
+          "possibleTypes": null
+        },
+        {
           "inputFields": null,
           "name": "AddToAlbumPhotosPayload",
           "description": null,
@@ -1240,32 +1279,16 @@
         {
           "inputFields": [
             {
-              "name": "email",
+              "name": "name",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lastName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -1481,32 +1504,16 @@
         {
           "inputFields": [
             {
-              "name": "email",
+              "name": "name",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lastName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -1530,6 +1537,27 @@
             }
           ],
           "name": "AlbumusersUseralbumsAlbumusersUser",
+          "description": null,
+          "interfaces": null,
+          "enumValues": null,
+          "fields": null,
+          "kind": "INPUT_OBJECT",
+          "possibleTypes": null
+        },
+        {
+          "inputFields": [
+            {
+              "name": "email",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "AUTH_PROVIDER_EMAIL",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "name": "AuthProviderSignupData",
           "description": null,
           "interfaces": null,
           "enumValues": null,
@@ -1769,32 +1797,16 @@
         {
           "inputFields": [
             {
-              "name": "email",
+              "name": "name",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lastName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -3483,32 +3495,16 @@
         {
           "inputFields": [
             {
-              "name": "email",
+              "name": "name",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lastName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -4061,26 +4057,6 @@
               "deprecationReason": null,
               "args": [
                 {
-                  "name": "email",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "firstName",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "id",
                   "description": null,
                   "type": {
@@ -4095,7 +4071,7 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "lastName",
+                  "name": "name",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -4666,7 +4642,7 @@
               }
             },
             {
-              "name": "createUser",
+              "name": "signinUser",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null,
@@ -4675,29 +4651,40 @@
                   "name": "email",
                   "description": null,
                   "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
+                    "kind": "INPUT_OBJECT",
+                    "name": "AUTH_PROVIDER_EMAIL",
                     "ofType": null
                   },
                   "defaultValue": null
-                },
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SigninPayload",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "name": "createUser",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [
                 {
-                  "name": "firstName",
+                  "name": "name",
                   "description": null,
                   "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "lastName",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 },
@@ -4733,6 +4720,20 @@
                         "name": "UseralbumsAlbum",
                         "ofType": null
                       }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "authProvider",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "AuthProviderSignupData",
+                      "ofType": null
                     }
                   },
                   "defaultValue": null
@@ -6084,32 +6085,16 @@
         {
           "inputFields": [
             {
-              "name": "email",
+              "name": "name",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lastName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -6348,6 +6333,41 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "File",
+                "ofType": null
+              }
+            }
+          ],
+          "kind": "OBJECT",
+          "possibleTypes": null
+        },
+        {
+          "inputFields": null,
+          "name": "SigninPayload",
+          "description": "If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.",
+          "interfaces": [],
+          "enumValues": null,
+          "fields": [
+            {
+              "name": "token",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            {
+              "name": "user",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
                 "ofType": null
               }
             }
@@ -6763,26 +6783,6 @@
         {
           "inputFields": [
             {
-              "name": "email",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "id",
               "description": null,
               "type": {
@@ -6797,7 +6797,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName",
+              "name": "name",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -6883,18 +6883,6 @@
               }
             },
             {
-              "name": "firstName",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
               "name": "id",
               "description": null,
               "isDeprecated": false,
@@ -6911,7 +6899,23 @@
               }
             },
             {
-              "name": "lastName",
+              "name": "name",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "name": "password",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null,
@@ -7314,162 +7318,6 @@
               "defaultValue": null
             },
             {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_lt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_lte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_gt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_gte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_contains",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_contains",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_starts_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_starts_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_ends_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_ends_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "id",
               "description": null,
               "type": {
@@ -7626,7 +7474,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName",
+              "name": "name",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7636,7 +7484,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not",
+              "name": "name_not",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7646,7 +7494,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_in",
+              "name": "name_in",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -7664,7 +7512,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_in",
+              "name": "name_not_in",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -7682,7 +7530,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_lt",
+              "name": "name_lt",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7692,7 +7540,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_lte",
+              "name": "name_lte",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7702,7 +7550,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_gt",
+              "name": "name_gt",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7712,7 +7560,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_gte",
+              "name": "name_gte",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7722,7 +7570,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_contains",
+              "name": "name_contains",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7732,7 +7580,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_contains",
+              "name": "name_not_contains",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7742,7 +7590,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_starts_with",
+              "name": "name_starts_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7752,7 +7600,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_starts_with",
+              "name": "name_not_starts_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7762,7 +7610,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_ends_with",
+              "name": "name_ends_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -7772,7 +7620,163 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_ends_with",
+              "name": "name_not_ends_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_in",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_in",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_lt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_lte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_gt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_gte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_contains",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_contains",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_starts_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_starts_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_ends_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_ends_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -8189,32 +8193,16 @@
         {
           "inputFields": [
             {
-              "name": "email",
+              "name": "name",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lastName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -13028,6 +13016,16 @@
               "deprecationReason": null,
               "args": [
                 {
+                  "name": "email",
+                  "description": "",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "id",
                   "description": "",
                   "type": {
@@ -13216,18 +13214,6 @@
               }
             },
             {
-              "name": "firstName",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            {
               "name": "id",
               "description": null,
               "isDeprecated": false,
@@ -13244,7 +13230,23 @@
               }
             },
             {
-              "name": "lastName",
+              "name": "name",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "name": "password",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null,
@@ -13649,162 +13651,6 @@
               "defaultValue": null
             },
             {
-              "name": "firstName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_lt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_lte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_gt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_gte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_contains",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_contains",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_starts_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_starts_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_ends_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "firstName_not_ends_with",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "id",
               "description": null,
               "type": {
@@ -13961,7 +13807,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName",
+              "name": "name",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -13971,7 +13817,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not",
+              "name": "name_not",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -13981,7 +13827,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_in",
+              "name": "name_in",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -13999,7 +13845,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_in",
+              "name": "name_not_in",
               "description": null,
               "type": {
                 "kind": "LIST",
@@ -14017,7 +13863,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_lt",
+              "name": "name_lt",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14027,7 +13873,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_lte",
+              "name": "name_lte",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14037,7 +13883,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_gt",
+              "name": "name_gt",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14047,7 +13893,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_gte",
+              "name": "name_gte",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14057,7 +13903,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_contains",
+              "name": "name_contains",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14067,7 +13913,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_contains",
+              "name": "name_not_contains",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14077,7 +13923,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_starts_with",
+              "name": "name_starts_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14087,7 +13933,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_starts_with",
+              "name": "name_not_starts_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14097,7 +13943,7 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_ends_with",
+              "name": "name_ends_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14107,7 +13953,163 @@
               "defaultValue": null
             },
             {
-              "name": "lastName_not_ends_with",
+              "name": "name_not_ends_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_in",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_in",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_lt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_lte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_gt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_gte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_contains",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_contains",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_starts_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_starts_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_ends_with",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "password_not_ends_with",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -14282,18 +14284,6 @@
               "deprecationReason": null
             },
             {
-              "name": "firstName_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "firstName_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "id_ASC",
               "description": null,
               "isDeprecated": false,
@@ -14306,13 +14296,25 @@
               "deprecationReason": null
             },
             {
-              "name": "lastName_ASC",
+              "name": "name_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "lastName_DESC",
+              "name": "name_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "password_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "password_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null

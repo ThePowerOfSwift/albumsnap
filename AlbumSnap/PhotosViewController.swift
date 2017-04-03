@@ -7,16 +7,12 @@
 //
 
 import UIKit
-import RxCocoa
 import RxSwift
-import Kingfisher
-import Apollo
 
 class PhotosViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     let disposeBag = DisposeBag()
-    var photos: [PhotoDetails] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +20,7 @@ class PhotosViewController: UIViewController {
     }
 
     func setup() {
-        apollo
+        engine
             .fetchPhotos()
             .bindTo(collectionView.rx.items(cellIdentifier: PhotoThumbnailCell.identifier,
                                             cellType: PhotoThumbnailCell.self))
@@ -33,7 +29,10 @@ class PhotosViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
 
-        collectionView.rx.setDelegate(self).addDisposableTo(disposeBag)
+        collectionView
+            .rx
+            .setDelegate(self)
+            .addDisposableTo(disposeBag)
 
         collectionView
             .rx

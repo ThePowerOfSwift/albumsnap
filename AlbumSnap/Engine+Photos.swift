@@ -28,4 +28,37 @@ extension Engine {
         }
     }
 
+    func createPhoto(with albumID: String) -> Observable<String> {
+        let mutation = CreatePhotoMutation(albumId: albumID)
+        return Observable.create { o in
+            let operation = engine.apollo.perform(mutation: mutation)
+            { result, error in
+                guard error == nil else { o.on(.error(error!)); return }
+                guard result?.errors == nil else { o.on(.error(result!.errors!.first!)); return }
+                o.on(.next(result!.data!.photo!.id))
+                o.on(.completed)
+            }
+            return Disposables.create {
+                operation.cancel()
+            }
+        }
+    }
+
+    func setPhotoFile(photoId: String, fileId: String) -> Observable<URL> {
+        let mutation = SetPhotoFileMutation(fileId: fileId, photoId: photoId)
+        return Observable.create { o in
+            let operation = engine.apollo.perform(mutation: mutation)
+            { result, error in
+                guard error == nil else { o.on(.error(error!)); return }
+                guard result?.errors == nil else { o.on(.error(result!.errors!.first!)); return }
+                let url = URL(string: result!.data!.payload!.file!.url)!
+                o.on(.next(url))
+                o.on(.completed)
+            }
+            return Disposables.create {
+                operation.cancel()
+            }
+        }
+    }
+
 }

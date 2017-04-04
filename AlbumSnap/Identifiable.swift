@@ -78,9 +78,18 @@ extension UICollectionView {
     func dequeueCell<T: UICollectionViewCell>(for indexPath: IndexPath) -> T where T: Identifiable {
         return dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as! T
     }
+
+    func dequeueHeaderView<T: UICollectionReusableView>(for indexPath: IndexPath) -> T where T: Identifiable {
+        return dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: T.identifier, for: indexPath) as! T
+    }
+
+    func dequeueFooterView<T: UICollectionReusableView>(for indexPath: IndexPath) -> T where T: Identifiable {
+        return dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: T.identifier, for: indexPath) as! T
+    }
 }
 
-extension UIViewController: Identifiable { }
-extension UITableViewCell: Identifiable { }
-extension UICollectionViewCell: Identifiable { }
-extension UITableViewHeaderFooterView: Identifiable { }
+extension UIViewController: Identifiable {}
+extension UITableViewCell: Identifiable {}
+//extension UICollectionViewCell: Identifiable {}
+extension UITableViewHeaderFooterView: Identifiable {}
+extension UICollectionReusableView: Identifiable {}

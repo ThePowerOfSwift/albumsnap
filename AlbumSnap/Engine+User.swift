@@ -1,5 +1,5 @@
 //
-//  Engine+Auth.swift
+//  Engine+User.swift
 //  AlbumSnap
 //
 //  Created by Aaron Monick on 4/3/17.
@@ -38,6 +38,22 @@ extension Engine {
                 let token = data.token!
                 let user = data.user!.fragments.userDetails
                 o.on(.next(token, user))
+                o.on(.completed)
+            }
+            return Disposables.create {
+                operation.cancel()
+            }
+        }
+    }
+
+    func fetchUser(for id: String? = nil, for email: String? = nil) -> Observable<UserDetails> {
+        let query = UserQuery(id: id, email: email)
+        return Observable.create { o in
+            let operation = self.apollo.fetch(query: query, cachePolicy: .fetchIgnoringCacheData)
+            { result, error in
+                guard error == nil else { o.on(.error(error!)); return }
+                guard result?.errors == nil else { o.on(.error(result!.errors!.first!)); return }
+                o.on(.next(result!.data!.user!.fragments.userDetails))
                 o.on(.completed)
             }
             return Disposables.create {

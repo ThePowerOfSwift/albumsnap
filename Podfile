@@ -22,6 +22,7 @@ target 'AlbumSnap' do
     pod 'Onboard'
     pod 'PKHUD', '~> 4.0'
     pod 'RxCocoa'
+    pod 'RxDataSources'
     pod 'RxGesture'
     pod 'RxKeyboard'
     pod 'RxSwift'

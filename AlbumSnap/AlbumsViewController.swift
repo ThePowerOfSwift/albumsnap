@@ -10,117 +10,110 @@ import Files
 import Kingfisher
 import RxSwift
 import RxCocoa
+import RxDataSources
 import UIKit
 
 class AlbumsViewController: UIViewController {
 
-    var fromStoryboard: AlbumsViewController {
-        return UIStoryboard(.albums).instantiateViewController()
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
 
-    @IBOutlet weak var tableView: UITableView!
+    typealias AlbumSection = SectionModel<AlbumDetails, PhotoDetails>
+    private let dataSource = RxCollectionViewSectionedReloadDataSource<AlbumSection>()
     let disposeBag = DisposeBag()
-    var albums: [AlbumDetails] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAlbums()
+
     }
 
-    func getAlbums() {
-        engine
-            .apollo
-            .fetchAlbums()
-            .subscribe(onNext: { albums in
-                for album in albums {
-                    print("Album name: \(album.name ?? "No name")")
-                    for photo in album.photos!.map({ $0.fragments.photoDetails }) {
-                        let caption = photo.caption ?? "no caption"
-                        print("\tPhoto caption: \(caption)")
-                    }
-                }
-                self.albums = albums
-            })
-            .addDisposableTo(disposeBag)
-    }
+    func setup() {
+        guard let albums = engine.user?.albums else { print("no albums"); return }
 
-    @IBAction func tapGesture(_ sender: Any) {
-        //createAlbum()
-        uploadPhoto()
+        dataSource.configureCell = { datasource, collectionView, indexPath, item in
+            let cell: PhotoThumbnailCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(photo: item)
+            return cell
+        }
+        dataSource.supplementaryViewFactory = { dataSource, collectionView, kind, indexPath in
+            let header: AlbumHeaderView = collectionView.dequeueHeaderView(for: indexPath)
+            let album = dataSource.sectionModels[indexPath.section].model
+            header.configure(album: album)
+            return header
+        }
 
-        //add(photos: photos, to: albums.first!)
-        //remove(photos: photos, from: albums.first!)
-    }
-
-//    func add(photos: [Photo], to album: Album) {
-//        var addOperations: [Observable<(String, String)>] = []
-//        photos.forEach { photo in
-//            addOperations += [add(photo: photo, to: album)]
-//        }
-//        Observable
-//            .concat(addOperations)
-//            .subscribe(onNext: { photoId, albumId in
-//                print("photoId: \(photoId) added to albumId: \(albumId)")
-//            }, onError: { (error) in
-//                print(error.localizedDescription)
-//            })
-//            .addDisposableTo(disposeBag)
-//    }
-//
-//    func remove(photos: [Photo], from album: Album) {
-//        var removeOperations: [Observable<(String, String)>] = []
-//        photos.forEach { photo in
-//            removeOperations += [remove(photo: photo, from: album)]
-//        }
-//        Observable
-//            .concat(removeOperations)
-//            .subscribe(onNext: { photoId, albumId in
-//                print("photoId: \(photoId) removed from albumId: \(albumId)")
-//            }, onError: { (error) in
-//                print(error.localizedDescription)
-//            })
-//            .addDisposableTo(disposeBag)
-//    }
-
-    func uploadPhoto(image: UIImage = UIImage(named: "backgroundImage")!) {
-        let filename = UUID().uuidString
-        let uploadObservable = Engine.upload(image: image, with: "\(filename).jpg")
-        let createPhotoObservable = engine.apollo.createPhoto(with: self.albums.first!.id)
-        Observable
-            .zip(uploadObservable, createPhotoObservable) { return ($0, $1) }
-            .flatMap { fileData, photoId -> Observable<URL> in
-                return engine.apollo.setPhotoFile(photoId: photoId, fileId: fileData.id)
+        let sections: [AlbumSection] = albums.map { album in
+            let album = album.fragments.albumDetails
+            let photos: [PhotoDetails] = album.photos!.map { photo in
+                return photo.fragments.photoDetails
             }
-            .subscribe(onNext: { url in
-                print("file url: \(url)")
-                self.moveToCache(filename, url)
+            return AlbumSection(model: album, items: photos)
+        }
+
+        Observable.just(sections)
+            .bindTo(collectionView.rx.items(dataSource: dataSource))
+            .addDisposableTo(disposeBag)
+
+        collectionView
+            .rx
+            .setDelegate(self)
+            .addDisposableTo(disposeBag)
+
+        collectionView
+            .rx
+            .modelSelected(PhotoDetails.self)
+            .subscribe(onNext: { photo in
+                print("photo: \(photo.id) selected")
             }, onError: { error in
                 print(error.localizedDescription)
             })
             .addDisposableTo(disposeBag)
     }
 
-    func moveToCache(_ filename: String, _ url: URL) {
-        let localURL = tempDir.appendingPathComponent("\(filename).jpg")
-        do {
-            try File(path: localURL.path).delete()
-        } catch let error {
-            print(error.localizedDescription)
+    func reload() {
+        setup()
+    }
+
+    func add(photos: [PhotoDetails], to album: AlbumDetails) {
+        var addOperations: [Observable<(String, String)>] = []
+        photos.forEach { photo in
+            addOperations += [engine.addPhoto(with: photo.id, to: album.id)]
         }
-        ImagePrefetcher(urls: [url]) { _, _, completedResources in
-            print("These resources are prefetched: \(completedResources)")
-        }.start()
+        Observable
+            .concat(addOperations)
+            .subscribe(onNext: { photoId, albumId in
+                print("photoId: \(photoId) added to albumId: \(albumId)")
+            }, onError: { (error) in
+                print(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
+    }
+
+    func remove(photos: [PhotoDetails], from album: AlbumDetails) {
+        var removeOperations: [Observable<(String, String)>] = []
+        photos.forEach { photo in
+            removeOperations += [engine.removePhoto(with: photo.id, from: album.id)]
+        }
+        Observable
+            .concat(removeOperations)
+            .subscribe(onNext: { photoId, albumId in
+                print("photoId: \(photoId) removed from albumId: \(albumId)")
+            }, onError: { (error) in
+                print(error.localizedDescription)
+            })
+            .addDisposableTo(disposeBag)
     }
 
     func createAlbum() {
         UIAlertController.textAlert("New Album", "Enter Album Name") { albumName in
             guard let albumName = albumName else { return }
             engine
-                .apollo
                 .createAlbum(with: albumName)
                 .subscribe(onNext: { albumId in
                     print("New album created with id: \(albumId)")
-                    self.getAlbums()
+                    //self.getAlbums()
+                    engine.fetchUser {
+                        self.reload()
+                    }
                 })
                 .addDisposableTo(self.disposeBag)
         }
@@ -128,7 +121,6 @@ class AlbumsViewController: UIViewController {
 
     func deleteAlbum(album: AlbumDetails) {
         engine
-            .apollo
             .deleteAlbum(with: album.id)
             .subscribe(onNext: { albumId in
                 print("albumId: \(albumId) has been deleted")
@@ -139,13 +131,34 @@ class AlbumsViewController: UIViewController {
     }
 }
 
-class ThumbnailCell: UITableViewCell {
-    //typealias Photo = AllAlbumsQuery.Data.Album.Photo
+extension AlbumsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let width = collectionView.bounds.width
+        let cellWidth = (width - 4) / 3 // compute your cell width
+        return CGSize(width: cellWidth, height: cellWidth)
+    }
+}
 
-    @IBOutlet weak var thumbnail: UIImageView!
+class PhotoThumbnailCell: UICollectionViewCell {
 
-    func configure(model: PhotoDetails) {
+    @IBOutlet weak var thumbnailImageView: UIImageView!
 
+    func configure(photo: PhotoDetails) {
+        if let url = try? photo.file?.url.asURL() {
+            thumbnailImageView.kf.setImage(with: url)
+        }
+    }
+}
+
+class AlbumHeaderView: UICollectionReusableView {
+
+    @IBOutlet weak var albumLabel: UILabel!
+    
+    func configure(album: AlbumDetails) {
+        albumLabel.text = album.name
     }
 }
 

@@ -1,3 +1,14 @@
+
+fragment UserDetails on User {
+    id
+    email
+    name
+    createdAt
+    albums {
+        ...AlbumDetails
+    }
+}
+
 mutation CreateUser($name: String!,
                     $email: String!,
                     $password: String!)
@@ -6,8 +17,8 @@ mutation CreateUser($name: String!,
     name: $name,
     authProvider: {
         email: {
-        email: $email
-        password: $password
+            email: $email
+            password: $password
         }
   }) {
     ...UserDetails
@@ -28,12 +39,8 @@ mutation SignInUser($email: String!,
   }
 }
 
-fragment UserDetails on User {
-    id
-    email
-    name
-    createdAt
-    albums {
-        id
+query User($id: ID, $email: String) {
+    User(email: $email, id: $id) {
+        ...UserDetails
     }
 }

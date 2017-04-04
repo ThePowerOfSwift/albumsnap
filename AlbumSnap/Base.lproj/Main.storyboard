@@ -82,7 +82,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="CQn-pa-LUB" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gWd-Dh-eqF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gWd-Dh-eqF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -109,7 +109,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kb-Bn-SPO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="dEI-b5-ElY" kind="embed" identifier="Photos" id="FVo-W5-L8e"/>
+                                    <segue destination="NK8-Oy-Gk5" kind="embed" identifier="Albums" id="uRI-Sn-nmB"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -135,6 +135,14 @@
             </objects>
             <point key="canvasLocation" x="1487" y="723"/>
         </scene>
+        <!--AlbumsViewController-->
+        <scene sceneID="lRK-gg-8Eg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Albums" referencedIdentifier="AlbumsViewController" id="NK8-Oy-Gk5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kri-Qb-BEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1488" y="867"/>
+        </scene>
         <!--Home Table View Controller-->
         <scene sceneID="3P0-KD-4Gz">
             <objects>
@@ -152,7 +160,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="akg-tL-7hw" id="f8w-8h-jX2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPy-Wf-p34">
@@ -176,7 +184,7 @@
                                         <rect key="frame" x="0.0" y="191" width="375" height="191"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="htn-LS-al9" id="aXV-E8-qGI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXK-ne-gdH">
@@ -200,7 +208,7 @@
                                         <rect key="frame" x="0.0" y="382" width="375" height="191"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vgK-7Z-FAs" id="kg6-40-Gzo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBK-7j-J75">
@@ -240,7 +248,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="AfV-ly-Rz5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GE7-qO-ASA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GE7-qO-ASA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -279,6 +287,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="1920" height="1200"/>
+        <image name="background" width="600" height="900"/>
     </resources>
 </document>

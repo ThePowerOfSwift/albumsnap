@@ -29,6 +29,9 @@ PODS:
   - PKHUD (4.2.0)
   - RxCocoa (3.3.1):
     - RxSwift (~> 3.3)
+  - RxDataSources (1.0.3):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
   - RxGesture (1.0.0):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
@@ -58,6 +61,7 @@ DEPENDENCIES:
   - Onboard
   - PKHUD (~> 4.0)
   - RxCocoa
+  - RxDataSources
   - RxGesture
   - RxKeyboard
   - RxSwift
@@ -94,6 +98,7 @@ SPEC CHECKSUMS:
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
   PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
+  RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxGesture: df17ca8be513640294c544b3165875e91de665ec
   RxKeyboard: 4046ecd1884a3bf0dacb823bd2ac8b00482d29ff
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
@@ -103,6 +108,6 @@ SPEC CHECKSUMS:
   Timepiece: 4190a7bc5ae1c05c87531fd75b14e17d2a017902
   Validator: b1793fbfd0046097551d0edd18e2c30792d69ef5
 
-PODFILE CHECKSUM: 7c78d8a4923cb040e9f6b36843b09917e01e13b5
+PODFILE CHECKSUM: 5437738fa53f6e7f2c42785d1017170085c817a8
 
 COCOAPODS: 1.1.1

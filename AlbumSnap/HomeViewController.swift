@@ -8,16 +8,16 @@
 
 import UIKit
 import ILLoginKit
-import ChameleonFramework
-import RxSwift
 import PKHUD
+import RxSwift
 
 class HomeViewController: UIViewController {
 
+    var albumsVC: AlbumsViewController!
+    
     lazy var loginCoordinator: LoginCoordinator = {
         return LoginCoordinator(rootViewController: self)
     }()
-    var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,112 +25,36 @@ class HomeViewController: UIViewController {
     }
 
     func showLoginCoordinator() {
-        if engine.currentUserID != nil && engine.token != nil { return }
+        if engine.currentUserID != nil && engine.token != nil { fetchUser(); return }
 
         loginCoordinator.start()
-
-        loginCoordinator.signup = { name, email, password in
-            self.signup(name, email, password)
-        }
-        loginCoordinator.login = { email, password in
-            self.login(email, password)
+        loginCoordinator.finished = {
+            self.albumsVC.reload()
         }
     }
 
-    func signup(_ name: String, _ email: String, _ password: String) {
-        HUD.show(.progress)
-        engine
-            .createUser(name: name, email: email, password: password)
-            .flatMap { (user) -> Observable<(String, UserDetails)> in
-                print("User \(user.id): \(user.name) signed up")
-                return engine.signIn(email: email, password: password)
-            }.subscribe(onNext: { (token, user) in
-                HUD.flash(.success)
-                print("User: \(user.id): \(user.name) signed in with token: \(token)")
-                engine.newAuth(user: user, token: token)
-                self.loginCoordinator.finish()
-            }, onError: { error in
-                print(error.localizedDescription)
-                HUD.show(.labeledError(title: "Error", subtitle: error.localizedDescription))
-            })
-            .addDisposableTo(disposeBag)
+    func fetchUser() {
+        engine.fetchUser {
+            print(engine.user!)
+            self.albumsVC.reload()
+        }
     }
-
-    func login(_ email: String, _ password: String) {
-        engine
-            .signIn(email: email, password: password)
-            .subscribe(onNext: { token, user in
-                print("User: \(user.id): \(user.name) signed in with token: \(token)")
-                engine.newAuth(user: user, token: token)
-                self.loginCoordinator.finish()
-            }, onError: { (error) in
-                print(error.localizedDescription)
-                HUD.show(.labeledError(title: "Error", subtitle: error.localizedDescription))
-            })
-            .addDisposableTo(disposeBag)
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
 }
 
-class LoginCoordinator: ILLoginKit.LoginCoordinator {
-
-    var login: ((String, String) -> ())?
-    var signup: ((String, String, String) -> ())?
-
-    override func start() {
-        super.start()
-        configureAppearance()
+extension HomeViewController: SegueHandler {
+    
+    enum SegueIdentifier: String {
+        case albums = "Albums"
     }
 
-    override func finish() {
-        super.finish()
-    }
-
-    func configureAppearance() {
-        backgroundImage = Image.backgroundImage.value
-        tintColor = .flatPowderBlue
-
-        loginButtonText = "Sign In"
-        signupButtonText = "Create Account"
-        facebookButtonText = "Login with Facebook"
-        forgotPasswordButtonText = "Forgot password?"
-        recoverPasswordButtonText = "Recover"
-        namePlaceholder = "Name"
-        emailPlaceholder = "E-Mail"
-        passwordPlaceholder = "Password!"
-        repeatPasswordPlaceholder = "Confirm password!"
-    }
-
-    // MARK: - Completion Callbacks
-
-    // Handle login via your API
-    override func login(email: String, password: String) {
-        print("Login with: email = \(email) password = \(password)")
-        login?(email, password)
-    }
-
-    // Handle signup via your API
-    override func signup(name: String, email: String, password: String) {
-        print("Signup with: name = \(name) email = \(email) password = \(password)")
-        signup?(name, email, password)
-    }
-
-    // Handle Facebook login/signup via your API
-    override func enterWithFacebook(profile: FacebookProfile) {
-        print("Login/Signup via Facebook with: FB profile =\(profile)")
-    }
-
-    // Handle password recovery via your API
-    override func recoverPassword(email: String) {
-        print("Recover password with: email =\(email)")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifer(for: segue) {
+        case .albums: albumsVC = segue.destination as! AlbumsViewController
+        }
     }
 }
-
 

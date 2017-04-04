@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "468451F5A1D3DA79971D5F8420EDEF99"
+               BlueprintIdentifier = "ABFCFDF1C5F8E4DEBCF9A1DD58276A32"
                BuildableName = "Pods_AlbumSnap.framework"
                BlueprintName = "Pods-AlbumSnap"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "468451F5A1D3DA79971D5F8420EDEF99"
+            BlueprintIdentifier = "ABFCFDF1C5F8E4DEBCF9A1DD58276A32"
             BuildableName = "Pods_AlbumSnap.framework"
             BlueprintName = "Pods-AlbumSnap"
             ReferencedContainer = "container:Pods.xcodeproj">

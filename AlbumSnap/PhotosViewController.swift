@@ -56,14 +56,3 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-class PhotoThumbnailCell: UICollectionViewCell {
-
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-
-    func configure(photo: PhotoDetails) {
-        if let url = try? photo.file?.url.asURL() {
-            thumbnailImageView.kf.setImage(with: url)
-        }
-    }
-}
-

@@ -1,3 +1,4 @@
+
 fragment AlbumDetails on Album {
     id
     name
@@ -8,32 +9,16 @@ fragment AlbumDetails on Album {
     }
 }
 
-mutation CreatePhoto($albumId: ID!) {
-    photo: createPhoto(albumId: $albumId) {
-        id
-    }
-}
-
-mutation SetPhotoFile($fileId: ID!, $photoId: ID!) {
-    payload: setPhotoFile(fileFileId: $fileId, photoPhotoId: $photoId) {
-        photo: photoPhoto {
-            id
-        }
-        file: fileFile {
-            id
-            url
-        }
-    }
-}
-
 query AllAlbums {
     albums: allAlbums {
         ...AlbumDetails
     }
 }
 
-mutation CreateAlbum($name: String!) {
-    album: createAlbum(name: $name) {
+mutation CreateAlbum($name: String!,
+                     $usersIds: [ID!]) {
+    album: createAlbum(name: $name,
+                       usersIds: $usersIds) {
         id
     }
 }
@@ -65,3 +50,4 @@ mutation RemovePhotoFromAlbum($photoId: ID!, $albumId: ID!) {
         }
     }
 }
+

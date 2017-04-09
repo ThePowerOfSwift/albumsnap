@@ -6,71 +6,27 @@
 //  Copyright © 2017 AlbumSnap. All rights reserved.
 //
 
-import Files
-import Kingfisher
-import RxSwift
-import RxCocoa
-import RxDataSources
 import UIKit
+import RxSwift
+
+protocol Reloadable {
+    func reload()
+}
 
 class AlbumsViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-
-    typealias AlbumSection = SectionModel<AlbumDetails, PhotoDetails>
-    private let dataSource = RxCollectionViewSectionedReloadDataSource<AlbumSection>()
     let disposeBag = DisposeBag()
-
+    var albumsCVC: AlbumsCollectionViewController!
+    var albumsTVC: AlbumsTableViewController!
+    var visibleVC: Reloadable!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
-    func setup() {
-        guard let albums = engine.user?.albums else { print("no albums"); return }
-
-        dataSource.configureCell = { datasource, collectionView, indexPath, item in
-            let cell: PhotoThumbnailCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(photo: item)
-            return cell
-        }
-        dataSource.supplementaryViewFactory = { dataSource, collectionView, kind, indexPath in
-            let header: AlbumHeaderView = collectionView.dequeueHeaderView(for: indexPath)
-            let album = dataSource.sectionModels[indexPath.section].model
-            header.configure(album: album)
-            return header
-        }
-
-        let sections: [AlbumSection] = albums.map { album in
-            let album = album.fragments.albumDetails
-            let photos: [PhotoDetails] = album.photos!.map { photo in
-                return photo.fragments.photoDetails
-            }
-            return AlbumSection(model: album, items: photos)
-        }
-
-        Observable.just(sections)
-            .bindTo(collectionView.rx.items(dataSource: dataSource))
-            .addDisposableTo(disposeBag)
-
-        collectionView
-            .rx
-            .setDelegate(self)
-            .addDisposableTo(disposeBag)
-
-        collectionView
-            .rx
-            .modelSelected(PhotoDetails.self)
-            .subscribe(onNext: { photo in
-                print("photo: \(photo.id) selected")
-            }, onError: { error in
-                print(error.localizedDescription)
-            })
-            .addDisposableTo(disposeBag)
-    }
-
     func reload() {
-        setup()
+        albumsTVC.reload()
     }
 
     func add(photos: [PhotoDetails], to album: AlbumDetails) {
@@ -131,14 +87,18 @@ class AlbumsViewController: UIViewController {
     }
 }
 
-extension AlbumsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        let width = collectionView.bounds.width
-        let cellWidth = (width - 4) / 3 // compute your cell width
-        return CGSize(width: cellWidth, height: cellWidth)
+extension AlbumsViewController: SegueHandler {
+    
+    enum SegueIdentifier: String {
+        case collection = "CollectionView"
+        case table      = "TableView"
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifer(for: segue) {
+        case .collection: albumsCVC = segue.destination as! AlbumsCollectionViewController
+        case .table: albumsTVC = segue.destination as! AlbumsTableViewController
+        }
     }
 }
 

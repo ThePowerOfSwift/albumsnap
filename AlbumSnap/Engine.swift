@@ -23,17 +23,29 @@ class Engine {
     var apollo: ApolloClient = ApolloClient(url: URL(string: graphlQLEndpointURL)!)
     var user: UserDetails?
     var currentUserID: String? {
-        return Defaults[.currentUserID]
+        get {
+            return Defaults[.currentUserID]
+        }
+        set {
+            Defaults[.currentUserID] =  newValue
+        }
     }
     var token: String? {
-        return KeychainSwift().get("token")
+        get {
+            return KeychainSwift().get("token")
+        }
+        set {
+            if let token = newValue {
+                KeychainSwift().set(token, forKey: "token")
+            }
+        }
     }
 
     init() {
         setupApollo()
     }
 
-    func setupApollo() {
+    func setupApollo() { 
         guard let token = token else { print("token not in keychain"); return }
 
         let configuration: URLSessionConfiguration = .default
@@ -47,14 +59,15 @@ class Engine {
 
     func newAuth(user: UserDetails, token: String) {
         self.user = user
-        Defaults[.currentUserID] = user.id
-        KeychainSwift().set(token, forKey: "token")
+        self.token = token
+        currentUserID = user.id
+
         setupApollo()
     }
 
     func logout() {
         user = nil
-        Defaults[.currentUserID] = nil
+        currentUserID = nil
         KeychainSwift().delete("token")
         apollo = ApolloClient(url: URL(string: graphlQLEndpointURL)!)
     }

@@ -46,6 +46,8 @@
 		00D9E6FE1E5A346600B6D917 /* AlbumSnapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9E6FD1E5A346600B6D917 /* AlbumSnapUITests.swift */; };
 		00EA37F51E917774009D65B2 /* Photo.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 00EA37F41E917774009D65B2 /* Photo.graphql */; };
 		00FDE1911E933650006D9B05 /* Engine+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDE1901E933650006D9B05 /* Engine+File.swift */; };
+		00FDE19C1E9AD99E006D9B05 /* AlbumsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDE19B1E9AD99E006D9B05 /* AlbumsCollectionViewController.swift */; };
+		00FDE19E1E9ADD7C006D9B05 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDE19D1E9ADD7C006D9B05 /* AlbumsTableViewController.swift */; };
 		3E151700531C0ADDCD5DC04A /* Pods_AlbumSnap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E1EB28E85A688FF7207D4A /* Pods_AlbumSnap.framework */; };
 		5291545CC8884CCB552452AD /* Pods_AlbumSnapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 976A9216F91711CD1E683EAA /* Pods_AlbumSnapTests.framework */; };
 		8EDC28489609EE5495E12CD9 /* Pods_AlbumSnapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A36506AF5F00F124147FE746 /* Pods_AlbumSnapUITests.framework */; };
@@ -114,6 +116,8 @@
 		00D9E6FF1E5A346600B6D917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EA37F41E917774009D65B2 /* Photo.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Photo.graphql; sourceTree = "<group>"; };
 		00FDE1901E933650006D9B05 /* Engine+File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Engine+File.swift"; sourceTree = "<group>"; };
+		00FDE19B1E9AD99E006D9B05 /* AlbumsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsCollectionViewController.swift; sourceTree = "<group>"; };
+		00FDE19D1E9ADD7C006D9B05 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
 		042211BF8CB38A857EF80DF6 /* Pods-AlbumSnapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumSnapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlbumSnapUITests/Pods-AlbumSnapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6CBE435640F588AEC2D0159D /* Pods-AlbumSnapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumSnapUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlbumSnapUITests/Pods-AlbumSnapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		85185D96ACAA5EAF5077680B /* Pods-AlbumSnapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlbumSnapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlbumSnapTests/Pods-AlbumSnapTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 			children = (
 				002CDBC21E802F3C008761C3 /* Albums.storyboard */,
 				0058CE2A1E634986006655B9 /* AlbumsViewController.swift */,
+				00FDE19B1E9AD99E006D9B05 /* AlbumsCollectionViewController.swift */,
+				00FDE19D1E9ADD7C006D9B05 /* AlbumsTableViewController.swift */,
 				0058CE2C1E634A84006655B9 /* Album.graphql */,
 				00D63E6F1E92BCB500B28888 /* Engine+Albums.swift */,
 			);
@@ -649,9 +655,11 @@
 				000C37231E849125006E9F14 /* PhotosViewController.swift in Sources */,
 				0058CE2B1E634986006655B9 /* AlbumsViewController.swift in Sources */,
 				002CDBCA1E8037C4008761C3 /* SegueHandler.swift in Sources */,
+				00FDE19C1E9AD99E006D9B05 /* AlbumsCollectionViewController.swift in Sources */,
 				000C370A1E848CDD006E9F14 /* CameraView.swift in Sources */,
 				000C37101E848DB4006E9F14 /* RectangleDetector.swift in Sources */,
 				00D9E6DE1E5A346500B6D917 /* AppDelegate.swift in Sources */,
+				00FDE19E1E9ADD7C006D9B05 /* AlbumsTableViewController.swift in Sources */,
 				000C37161E848E19006E9F14 /* Animator.swift in Sources */,
 				000C37211E8490D4006E9F14 /* PhotoLibraryViewController.swift in Sources */,
 				0058CE291E634942006655B9 /* API.swift in Sources */,

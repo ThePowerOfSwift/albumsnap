@@ -138,29 +138,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHg-nM-TXZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="300" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aHg-nM-TXZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableCell" rowHeight="215" id="hwo-sy-htL" customClass="AlbumTableCell" customModule="AlbumSnap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="215"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableCell" rowHeight="300" id="hwo-sy-htL" customClass="AlbumTableCell" customModule="AlbumSnap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwo-sy-htL" id="DaE-OP-cC7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="214.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDT-i0-WTD">
+                                                    <rect key="frame" x="127" y="8" width="120.5" height="21"/>
+                                                    <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aZP-u8-QyC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="215"/>
-                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <rect key="frame" x="0.0" y="37" width="375" height="266"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="1" id="P18-lQ-D6j">
                                                         <size key="itemSize" width="50" height="50"/>
-                                                        <size key="headerReferenceSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="1" minY="1" maxX="1" maxY="1"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoThumbnailCell" id="BJH-68-J5Z" customClass="PhotoThumbnailCell" customModule="AlbumSnap" customModuleProvider="target">
-                                                            <rect key="frame" x="51" y="1" width="50" height="50"/>
+                                                            <rect key="frame" x="1" y="1" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -183,35 +190,22 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumHeaderView" id="f5G-YT-ngR" customClass="AlbumHeaderView" customModule="AlbumSnap" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="215"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57z-KH-bdq">
-                                                                <rect key="frame" x="-5.5" y="96" width="61" height="23"/>
-                                                                <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="20"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="57z-KH-bdq" firstAttribute="centerY" secondItem="f5G-YT-ngR" secondAttribute="centerY" id="36W-wP-KOi"/>
-                                                            <constraint firstItem="57z-KH-bdq" firstAttribute="centerX" secondItem="f5G-YT-ngR" secondAttribute="centerX" id="ZkM-3q-sQW"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outlet property="albumLabel" destination="57z-KH-bdq" id="2X5-gR-zRd"/>
-                                                        </connections>
-                                                    </collectionReusableView>
                                                 </collectionView>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="aZP-u8-QyC" secondAttribute="trailing" id="37C-1d-usI"/>
-                                                <constraint firstAttribute="bottom" secondItem="aZP-u8-QyC" secondAttribute="bottom" id="KNv-Bh-KRE"/>
+                                                <constraint firstAttribute="bottom" secondItem="aZP-u8-QyC" secondAttribute="bottom" constant="-3.5" id="KNv-Bh-KRE"/>
+                                                <constraint firstItem="BDT-i0-WTD" firstAttribute="top" secondItem="DaE-OP-cC7" secondAttribute="top" constant="8" id="QHi-JR-huX"/>
                                                 <constraint firstItem="aZP-u8-QyC" firstAttribute="leading" secondItem="DaE-OP-cC7" secondAttribute="leading" id="gJo-JS-oza"/>
-                                                <constraint firstItem="aZP-u8-QyC" firstAttribute="top" secondItem="DaE-OP-cC7" secondAttribute="top" id="rRL-I1-3GB"/>
+                                                <constraint firstItem="BDT-i0-WTD" firstAttribute="centerX" secondItem="DaE-OP-cC7" secondAttribute="centerX" id="qnB-H6-Xcu"/>
+                                                <constraint firstItem="aZP-u8-QyC" firstAttribute="top" secondItem="DaE-OP-cC7" secondAttribute="top" constant="37" id="rRL-I1-3GB"/>
+                                                <constraint firstItem="aZP-u8-QyC" firstAttribute="top" secondItem="BDT-i0-WTD" secondAttribute="bottom" constant="8" id="scN-xg-cZ3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="albumLabel" destination="BDT-i0-WTD" id="8qF-LM-hDg"/>
                                             <outlet property="collectionView" destination="aZP-u8-QyC" id="Nwa-ET-dPL"/>
                                         </connections>
                                     </tableViewCell>
